@@ -1,5 +1,5 @@
 import { test, expect, beforeEach, afterEach } from "bun:test"
-import { findConfigPath } from "./load"
+import { findConfigPath, loadConfig } from "./load"
 import { mkdtemp, rm, mkdir } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
@@ -31,4 +31,17 @@ test("findConfigPath finds forge.config.ts in parent dir", async () => {
 test("findConfigPath returns null if not found", async () => {
   const result = await findConfigPath(tmpDir)
   expect(result).toBeNull()
+})
+
+test("loadConfig returns config from forge.config.ts", async () => {
+  await Bun.write(
+    join(tmpDir, "forge.config.ts"),
+    `export default { name: "test", type: "node", runtime: "bun", provider: "github", workflow: "dev-main", ci: { lint: false, typecheck: false, test: false, build: false }, hooks: { tool: "lefthook", preCommit: [], commitMsg: "none" } }`
+  )
+  const config = await loadConfig(tmpDir)
+  expect(config).toMatchObject({ name: "test", type: "node", runtime: "bun" })
+})
+
+test("loadConfig throws if forge.config.ts not found", async () => {
+  expect(loadConfig(tmpDir)).rejects.toThrow("forge.config.ts not found")
 })
