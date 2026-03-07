@@ -1,0 +1,19 @@
+{
+  "name": "forge",
+  "module": "index.ts",
+  "bin": {
+    "forge": "./bin/forge.ts"
+  },
+  "scripts": {
+    "dev": "bun run bin/forge.ts"
+  },
+  "dependencies": {
+    "@clack/prompts": "latest"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
