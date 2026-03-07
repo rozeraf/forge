@@ -1,0 +1,41 @@
+image: oven/bun:latest
+
+stages:
+  - ci
+
+cache:
+  paths:
+    - node_modules/
+
+install:
+  stage: ci
+  script:
+    - {{INSTALL_CMD}}
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+
+lint:
+  stage: ci
+  needs: [install]
+  script:
+    - {{RUN_CMD}} lint
+
+typecheck:
+  stage: ci
+  needs: [install]
+  script:
+    - {{RUN_CMD}} typecheck
+
+test:
+  stage: ci
+  needs: [install]
+  script:
+    - {{RUN_CMD}} test
+
+build:
+  stage: ci
+  needs: [install]
+  script:
+    - {{BUILD_CMD}}
