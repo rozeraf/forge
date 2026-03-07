@@ -21,6 +21,10 @@ test("validateConfig throws if name is empty", () => {
   expect(() => validateConfig({ ...base, name: "" })).toThrow("name")
 })
 
+test("validateConfig throws if name is whitespace only", () => {
+  expect(() => validateConfig({ ...base, name: "   " })).toThrow("name")
+})
+
 test("validateConfig throws if type is vite but vite field is missing", () => {
   expect(() => validateConfig({ ...base, type: "vite", vite: undefined })).toThrow("vite")
 })
@@ -35,4 +39,12 @@ test("validateConfig throws if deploy target is custom but no customScript", () 
     ci: { ...base.ci, deploy: { target: "custom", onBranch: "main", env: [] } },
   }
   expect(() => validateConfig(config)).toThrow("customScript")
+})
+
+test("validateConfig passes if deploy target is custom and customScript is provided", () => {
+  const config: ForgeConfig = {
+    ...base,
+    ci: { ...base.ci, deploy: { target: "custom", onBranch: "main", env: [], customScript: "./deploy.sh" } },
+  }
+  expect(() => validateConfig(config)).not.toThrow()
 })
