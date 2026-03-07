@@ -43,5 +43,5 @@ test("loadConfig returns config from forge.config.ts", async () => {
 })
 
 test("loadConfig throws if forge.config.ts not found", async () => {
-  expect(loadConfig(tmpDir)).rejects.toThrow("forge.config.ts not found")
+  await expect(loadConfig(tmpDir)).rejects.toThrow("forge.config.ts not found")
 })
