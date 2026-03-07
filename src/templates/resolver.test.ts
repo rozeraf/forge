@@ -77,3 +77,11 @@ test("vars: BUILD_CMD is bun run build for bun, npm run build for node", () => {
 test("vars: NODE_VERSION is 20", () => {
   expect(resolveTemplate(base).vars["NODE_VERSION"]).toBe("20")
 })
+
+test("vars: DEPLOY_BRANCH defaults to main when no deploy config", () => {
+  const config: ForgeConfig = {
+    ...base,
+    ci: { lint: true, typecheck: true, test: true, build: true },
+  }
+  expect(resolveTemplate(config).vars["DEPLOY_BRANCH"]).toBe("main")
+})

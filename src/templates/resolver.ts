@@ -12,7 +12,7 @@ export function resolveTemplate(config: ForgeConfig): { path: string; vars: Reco
     INSTALL_CMD:   config.runtime === "bun" ? "bun install --frozen-lockfile" : "npm ci",
     RUN_CMD:       config.runtime === "bun" ? "bun run" : "npm run",
     BUILD_CMD:     config.runtime === "bun" ? "bun run build" : "npm run build",
-    BUILD_OUTPUT:  config.type === "nextjs" ? ".next/" : "dist/",
+    BUILD_OUTPUT:  config.type === "nextjs" ? ".next/" : "dist/", // static/custom also get dist/
     DEPLOY_BRANCH: config.ci.deploy?.onBranch ?? "main",
     NODE_VERSION:  "20",
   }
