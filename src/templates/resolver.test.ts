@@ -63,3 +63,17 @@ test("vars: DEPLOY_BRANCH from deploy config", () => {
 test("vars: PROJECT_NAME from config.name", () => {
   expect(resolveTemplate(base).vars["PROJECT_NAME"]).toBe("my-app")
 })
+
+test("vars: RUN_CMD is bun run for bun, npm run for node", () => {
+  expect(resolveTemplate(base).vars["RUN_CMD"]).toBe("bun run")
+  expect(resolveTemplate({ ...base, runtime: "node" }).vars["RUN_CMD"]).toBe("npm run")
+})
+
+test("vars: BUILD_CMD is bun run build for bun, npm run build for node", () => {
+  expect(resolveTemplate(base).vars["BUILD_CMD"]).toBe("bun run build")
+  expect(resolveTemplate({ ...base, runtime: "node" }).vars["BUILD_CMD"]).toBe("npm run build")
+})
+
+test("vars: NODE_VERSION is 20", () => {
+  expect(resolveTemplate(base).vars["NODE_VERSION"]).toBe("20")
+})
