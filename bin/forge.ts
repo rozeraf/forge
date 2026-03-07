@@ -9,7 +9,7 @@ const commands: Record<string, () => Promise<void>> = {
 }
 
 if (!command || !(command in commands)) {
-  console.log("Usage: forge <init|sync|commit|release|feature>")
+  console.error("Usage: forge <init|sync|commit|release|feature>")
   process.exit(1)
 }
 

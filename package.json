@@ -1,6 +1,5 @@
 {
   "name": "forge",
-  "module": "index.ts",
   "bin": {
     "forge": "./bin/forge.ts"
   },
