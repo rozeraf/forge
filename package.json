@@ -2,9 +2,15 @@
   "name": "forge",
   "version": "0.1.0",
   "description": "Git workflow automation driven by forge.config.ts",
+  "license": "MIT",
   "bin": {
     "forge": "./bin/forge.ts"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
   "scripts": {
     "dev": "bun run bin/forge.ts",
     "test": "bun test",

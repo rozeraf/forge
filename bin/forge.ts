@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 const [command, ...args] = Bun.argv.slice(2)
 
 const commands: Record<string, () => Promise<void>> = {
