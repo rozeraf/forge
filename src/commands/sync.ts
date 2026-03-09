@@ -127,7 +127,9 @@ async function ensureSecrets(config: ForgeConfig): Promise<void> {
 
 async function installHooks(config: ForgeConfig): Promise<void> {
   if (config.hooks.tool === "lefthook") {
-    await Bun.$`lefthook install`.quiet()
+    await Bun.$`lefthook install`.quiet().catch(() => {
+      p.log.warn("lefthook not found — skipping hook install (run `lefthook install` manually)")
+    })
   } else {
     await Bun.$`bunx husky init`.quiet()
   }

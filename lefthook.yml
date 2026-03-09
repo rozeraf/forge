@@ -1,0 +1,9 @@
+pre-commit:
+  commands:
+    cmd-1:
+      run: bun run typecheck
+
+commit-msg:
+  commands:
+    commitlint:
+      run: bunx commitlint --edit {1}
