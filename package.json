@@ -1,10 +1,17 @@
 {
   "name": "forge",
+  "version": "0.1.0",
+  "description": "Git workflow automation driven by forge.config.ts",
   "bin": {
     "forge": "./bin/forge.ts"
   },
   "scripts": {
-    "dev": "bun run bin/forge.ts"
+    "dev": "bun run bin/forge.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
   },
   "dependencies": {
     "@clack/prompts": "latest"
