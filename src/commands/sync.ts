@@ -102,6 +102,10 @@ async function ensureBranches(): Promise<void> {
   if (!branches.includes("dev")) {
     await Bun.$`git branch dev`.quiet().catch(() => {
       // Repo may have no commits yet; skip silently
+      return
+    })
+    await Bun.$`git push -u origin dev`.quiet().catch(() => {
+      // No remote configured yet; skip silently
     })
   }
 }
