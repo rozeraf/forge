@@ -33,6 +33,6 @@ test("renders github/vite-vercel-bun.yml without leftover placeholders", async (
     DEPLOY_BRANCH: "main",
     NODE_VERSION: "20",
   })
-  expect(result).not.toContain("{{")
+  expect(result).not.toMatch(/\{\{\w+\}\}/)
   expect(result).toContain("bun install --frozen-lockfile")
 })

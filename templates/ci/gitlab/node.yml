@@ -34,8 +34,3 @@ test:
   script:
     - {{RUN_CMD}} test
 
-build:
-  stage: ci
-  needs: [install]
-  script:
-    - {{BUILD_CMD}}

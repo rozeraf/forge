@@ -46,4 +46,4 @@ jobs:
         run: {{INSTALL_CMD}}
 
       - name: Deploy to Vercel
-        run: npx vercel --prod --token $VERCEL_TOKEN
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
